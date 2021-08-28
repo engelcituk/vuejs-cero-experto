@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const apiKey = 'YQnG8xqCyq2shbGATEpCX95u0Kb5biNc'
+const apiKey = 'cKAr8npL6lL7Uvo5A3VVqqkeWp4JjYQi'
 // `https://api.giphy.com/v1/gifs/random?api_key=${ apiKey }`
 
 const giphyApi = axios.create({
