@@ -12,10 +12,17 @@
 <script>
     export default {
         name: 'Counter-Component',
-        props:['title'],
+        props:{
+            title: String,
+            start: {
+                type: Number,
+                required: true,
+                // default: 100 //para poner un valor por defecto
+            },
+        },
         data(){
             return {
-                counter: 5
+                counter: this.start
             }
         },
         computed:{
@@ -31,10 +38,10 @@
                 return this.counter * this.counter
             },
             increase(){
-                this.counter += 1
+                this.counter ++
             },
             decrease(){
-                this.counter -= 1
+                this.counter --
             }
         }
     }
