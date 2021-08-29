@@ -10,18 +10,19 @@ const quotes = [
 const app = Vue.createApp({
     data(){
         return {
-            quotes
+            quotes,
+            newQuote:'Hola mundo'
         }
     },
     methods:{
-        changeQuote(){
-            console.log('hola mundo de nuevo')
-            this.author = 'Nuevo autor'
-            this.capitalize()
-        },
-        capitalize(){
-            this.quote = this.quote.toUpperCase()
+        addQuote(e){
+            const { key } = e
+            if(key == "Enter"){
+                this.quotes.unshift({quote: this.newQuote, author:'Author nuevo'})
+                this.newQuote = 'Hola mundo'
+            }
         }
+
     }
 })
 

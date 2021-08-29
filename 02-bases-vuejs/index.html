@@ -8,6 +8,13 @@
 <body> 
     <div id="myApp">
         <h1>Batman Quotes</h1>
+        <input
+            type="text"
+            v-model="newQuote"
+            @keypress="addQuote"
+        >
+        <small>{{newQuote}}</small>
+        <hr>
         <!-- <pre>
             {{quotes}}
         </pre> -->
