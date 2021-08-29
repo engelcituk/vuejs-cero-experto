@@ -19,7 +19,7 @@ const app = Vue.createApp({
             // const { key } = e
             // if(key == "Enter"){
             // }
-            this.quotes.unshift({quote: this.newQuote, author:'Author nuevo'})
+            this.quotes.unshift({quote: this.newQuote})
             this.newQuote = 'Hola mundo'
         }
 
