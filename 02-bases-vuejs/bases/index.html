@@ -7,13 +7,9 @@
 </head>
 <body> 
     <div id="myApp">
-        <h1>Batman Quotes</h1>
-        <!-- <pre>
-            {{quotes}}
-        </pre> -->
-        <ul>
-            <li v-for="quote in quotes ">{{quote.author}}</li>
-        </ul>
+            <h1>{{quote}}</h1>
+            <blockquote>- {{author}}</blockquote>
+            <button @click="changeQuote">Cambiar quote</button>
     </div>
     <script src="./app.js"></script>
 </body>
