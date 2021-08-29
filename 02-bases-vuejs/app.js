@@ -16,11 +16,11 @@ const app = Vue.createApp({
     },
     methods:{
         addQuote(e){
-            const { key } = e
-            if(key == "Enter"){
-                this.quotes.unshift({quote: this.newQuote, author:'Author nuevo'})
-                this.newQuote = 'Hola mundo'
-            }
+            // const { key } = e
+            // if(key == "Enter"){
+            // }
+            this.quotes.unshift({quote: this.newQuote, author:'Author nuevo'})
+            this.newQuote = 'Hola mundo'
         }
 
     }
