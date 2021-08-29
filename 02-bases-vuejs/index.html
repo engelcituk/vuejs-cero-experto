@@ -12,7 +12,10 @@
             {{quotes}}
         </pre> -->
         <ul>
-            <li v-for="quote in quotes ">{{quote.author}}</li>
+            <li v-for="({quote, author}, index ) in quotes ">
+                <span>{{index + 1}} {{quote}} </span>
+                <blockquote>- {{author}}</blockquote>
+            </li>
         </ul>
     </div>
     <script src="./app.js"></script>
