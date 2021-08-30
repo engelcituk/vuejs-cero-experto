@@ -16,8 +16,8 @@
             title: String,
             start: {
                 type: Number,
-                required: true,
-                // default: 100 //para poner un valor por defecto
+                // required: true,
+                default: 100,//para poner un valor por defecto
                 validator(value){
                     return value > 0
                 }
