@@ -10,9 +10,10 @@
             >
 
             <p>Recuerda terminar con un signo de interrogación</p>
-            <div>
+
+            <div v-if="isValidQuestion">
                 <h2>{{question}}</h2>
-                <h1>{{answer}}</h1>
+                <h1>{{answerF}}</h1>
             </div>
         </div>
     </div>
@@ -24,7 +25,13 @@
             return {
                 question: null,
                 answer: null,
-                img: null
+                img: null,
+                isValidQuestion: false
+            }
+        },
+        computed:{
+            answerF(){
+                return this.answer == "yes" ? 'Sí' : 'No!'
             }
         },
         methods:{
@@ -37,7 +44,9 @@
         },
         watch:{
             question(value, oldValue){
+                this.isValidQuestion = false
                 if(!value.includes('?')) return
+                this.isValidQuestion = true
                 this.getAnswer()
                 //Todo realizar 
             }
