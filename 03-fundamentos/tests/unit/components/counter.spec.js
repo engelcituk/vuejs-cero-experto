@@ -19,4 +19,17 @@ describe('Counter Component', ()=> {
         expect(h2Value).toBe('Counter')
     })
 
+    test('El valor por defecto debe ser 100 en el parrafo', ()=> {
+        const wrapper = shallowMount(Counter)
+
+        // const pTags = wrapper.findAll('p')
+        const value = wrapper.find('[data-test-id="counter"]').text()
+
+        // expect(pTags[1].text()).toBe('100')
+
+        expect(value).toBe('100')
+
+
+    })
+
 })
