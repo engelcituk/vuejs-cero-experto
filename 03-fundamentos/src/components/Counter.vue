@@ -4,8 +4,8 @@
         <p data-test-id="counter" >{{counter}}</p>
         <p>{{counter}}<sup>2</sup>={{squareCounter}}</p>
         <div>
-            <button @click="decrease">-1</button> 
             <button @click="increase">+1</button>
+            <button @click="decrease" data-test-dec="decrease"> -1</button> 
         </div>
     </div>
 </template>

@@ -28,8 +28,24 @@ describe('Counter Component', ()=> {
         // expect(pTags[1].text()).toBe('100')
 
         expect(value).toBe('100')
+    })
 
+    test('Debe de incrementar y decrementar en 1 el contador', async ()=> {
+        const wrapper = shallowMount(Counter)
 
+        const increaseBtn = wrapper.find('button')
+
+        await increaseBtn.trigger('click')
+
+        let value = wrapper.find('[data-test-id="counter"]').text()
+
+        expect(value).toBe('101')
+
+        const decreaseBtn = wrapper.find('[data-test-dec="decrease"]')
+        await decreaseBtn.trigger('click')
+        await decreaseBtn.trigger('click')
+        value = wrapper.find('[data-test-id="counter"]').text()
+        expect(value).toBe('99')
     })
 
 })
