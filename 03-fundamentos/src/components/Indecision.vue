@@ -36,10 +36,16 @@
         },
         methods:{
             async getAnswer(){
-                this.answer = 'Pensando...'
-                const { answer, image } = await fetch('https://yesno.wtf/api').then( res => res.json() )
-                this.answer = answer
-                this.img = image
+                try {
+                    this.answer = 'Pensando...'
+                    const { answer, image } = await fetch('https://yesno.wtf/api').then( res => res.json() )
+                    this.answer = answer
+                    this.img = image
+                } catch (error) {
+                    console.log('indecision component', error)
+                    this.answer = 'No se pudo cargar del API'
+                    this.img = null
+                }
             }
         },
         watch:{

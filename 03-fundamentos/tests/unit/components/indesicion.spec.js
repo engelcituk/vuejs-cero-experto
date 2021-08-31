@@ -56,9 +56,17 @@ describe('Indecision Component', ()=> {
 
     })
 
-    test('Pruebas en getAnswer - Fallo en API', () => {
+    test('Pruebas en getAnswer - Fallo en API', async () => {
+
+        fetch.mockImplementationOnce( () => Promise.reject('API fail') ) // fallo controlado
         
-        
+        await wrapper.vm.getAnswer()
+
+        const img = wrapper.find('img')
+        expect(img.exists() ).toBeFalsy()
+        expect( wrapper.vm.answer ).toBe('No se pudo cargar del API')
+
+
     })
     
 })
