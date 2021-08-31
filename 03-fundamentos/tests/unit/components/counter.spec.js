@@ -1,7 +1,6 @@
 
 import { shallowMount } from '@vue/test-utils';
 import Counter from '@/components/Counter'
-import { exportAllDeclaration, exportSpecifier } from '@babel/types';
 
 describe('Counter Component', ()=> {
     let wrapper
