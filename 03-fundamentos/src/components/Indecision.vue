@@ -45,6 +45,7 @@
         watch:{
             question(value, oldValue){
                 this.isValidQuestion = false
+                console.log({value})
                 if(!value.includes('?')) return
                 this.isValidQuestion = true
                 this.getAnswer()

@@ -13,5 +13,24 @@ describe('Indecision Component', ()=> {
         expect( wrapper.html() ).toMatchSnapshot()
     })
 
+    test('Escribir en el input no debe de disparar nada, (console.log())', () => {
+        
+        
+    })
+
+    test('Al escribir el simbolo de "?" debe de disparar el fetch', () => {
+        
+        
+    })
+
+    test('Pruebas en getAnswer', () => {
+        
+        
+    })
+
+    test('Pruebas en getAnswer - Fallo en API', () => {
+        
+        
+    })
     
 })
