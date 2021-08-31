@@ -32,7 +32,6 @@ describe('Counter Component', ()=> {
     })
 
     test('Debe de incrementar y decrementar en 1 el contador', async ()=> {
-        
 
         const [increaseBtn, decreaseBtn] = wrapper.findAll('button')
 
@@ -45,6 +44,12 @@ describe('Counter Component', ()=> {
         const value = wrapper.find('[data-test-id="counter"]').text()
 
         expect(value).toBe('101')
+    })
+
+    test('Debe de establecer el valor por defecto', () => {
+        const { start } = wrapper.props()
+        const value = wrapper.find('[data-test-id="counter"]').text()
+        expect(Number(value)).toBe( start )
     })
 
 })
