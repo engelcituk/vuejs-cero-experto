@@ -52,4 +52,15 @@ describe('Counter Component', ()=> {
         expect(Number(value)).toBe( start )
     })
 
+    test('Debe de mostrar la prop title', () => {
+        const title = 'Hola mundo'
+        const wrapper = shallowMount(Counter, {
+            props:{
+                title,
+                // start:'5'
+            }
+        })
+        expect(wrapper.find('h2').text()).toBe( title )
+    })
+
 })
