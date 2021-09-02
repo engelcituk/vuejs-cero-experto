@@ -3,8 +3,14 @@
         <h1 v-if="!pokemon">Espere por favor</h1>
         <div v-if="pokemon">
             <h1>¿Quién es este pokemón?</h1>
-            <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
-            <PokemonOptions :pokemons="pokemonArr" />
+            <PokemonPicture
+                :pokemonId="pokemon.id"
+                :showPokemon="showPokemon"
+            />
+            <PokemonOptions
+                :pokemons="pokemonArr"
+                @selection="checkAnswer"
+            />
         </div>
     </div>
 </template>
@@ -32,6 +38,10 @@
                 this.pokemonArr = await getPokemonOptions()
                 const rndInt = Math.floor( Math.random() * 4 )
                 this.pokemon = this.pokemonArr[rndInt]
+            },
+            checkAnswer(pokemonId ){
+                this.showPokemon = true
+                console.log('pokemon page llamado', pokemonId)
             }
         },
         mounted(){
