@@ -1,8 +1,11 @@
 <template>
     <div>
-        <h1>¿Quién es este pokemón?</h1>
-        <PokemonPicture :pokemonId="251" :showPokemon="true" />
-        <PokemonOptions :pokemons="pokemonArr" />
+        <h1 v-if="!pokemon">Espere por favor</h1>
+        <div v-if="pokemon">
+            <h1>¿Quién es este pokemón?</h1>
+            <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
+            <PokemonOptions :pokemons="pokemonArr" />
+        </div>
     </div>
 </template>
 
@@ -19,13 +22,16 @@
         },
         data(){
             return {
-                pokemonArr: []
+                pokemonArr: [],
+                pokemon: null,
+                showPokemon: false
             }
         },
         methods:{
             async mixPokemonArr(){
                 this.pokemonArr = await getPokemonOptions()
-                console.log(this.pokemonArr)
+                const rndInt = Math.floor( Math.random() * 4 )
+                this.pokemon = this.pokemonArr[rndInt]
             }
         },
         mounted(){
