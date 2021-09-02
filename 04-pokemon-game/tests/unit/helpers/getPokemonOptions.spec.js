@@ -1,6 +1,6 @@
 
 import { shallowMount } from '@vue/test-utils'
-import { getPokemons } from '@/helpers/getPokemonOptions'
+import getPokemonOptions, { getPokemons, getPokemonNames } from '@/helpers/getPokemonOptions'
 
 describe('get Pokemon Options helpers', ()=> {
 
@@ -12,11 +12,41 @@ describe('get Pokemon Options helpers', ()=> {
     })
 
 
-    test('Debe de retornar un arreglo de cuatro elementos con nombres de pokemons', ()=> {
+    test('Debe de retornar un arreglo de cuatro elementos con nombres de pokemons', async ()=> {
+        
+        const pokemons = await getPokemonNames([1,2,3,4])
 
+        expect(pokemons).toEqual([
+            { name: 'bulbasaur', id: 1 },
+            { name: 'ivysaur', id: 2 },
+            { name: 'venusaur', id: 3 },
+            { name: 'charmander', id: 4 }
+        ]) 
     })
 
-    test('getPokemonOptions Debe de retornar un arreglo mezclado ', () => {
+    test('getPokemonOptions Debe de retornar un arreglo mezclado ', async () => {
+        const pokemons = await getPokemonOptions()
+        
+        expect(pokemons.length ).toBe(4)
+
+        expect(pokemons).toEqual([
+            {
+                name: expect.any(String),
+                id: expect.any(Number) 
+            },
+            { 
+                name: expect.any(String), 
+                id: expect.any(Number)  
+            },
+            { 
+                name: expect.any(String), 
+                id: expect.any(Number)  
+            },
+            { 
+                name: expect.any(String), 
+                id: expect.any(Number)  
+            }
+        ])
 
     })
 })
