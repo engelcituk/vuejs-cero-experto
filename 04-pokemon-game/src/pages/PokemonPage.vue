@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 v-if="!pokemon">Espere por favor</h1>
-        <div v-if="pokemon">
+        <div class="pokemon-info" v-if="pokemon">
             <h1>¿Quién es este pokemón?</h1>
             <PokemonPicture
                 :pokemonId="pokemon.id"
@@ -11,6 +11,12 @@
                 :pokemons="pokemonArr"
                 @selection="checkAnswer"
             />
+            <template v-if="showAnswer">
+                <h2 class="fade-in">{{message}}</h2>
+                <button class="btn-newgame" @click="newGame">
+                    Nuevo juego
+                </button>
+            </template>
         </div>
     </div>
 </template>
@@ -30,7 +36,9 @@
             return {
                 pokemonArr: [],
                 pokemon: null,
-                showPokemon: false
+                showPokemon: false,
+                showAnswer: false,
+                message: ''
             }
         },
         methods:{
@@ -39,9 +47,22 @@
                 const rndInt = Math.floor( Math.random() * 4 )
                 this.pokemon = this.pokemonArr[rndInt]
             },
-            checkAnswer(pokemonId ){
+            checkAnswer(selectedId ){
                 this.showPokemon = true
-                console.log('pokemon page llamado', pokemonId)
+                this.showAnswer = true
+                if(selectedId === this.pokemon.id ){
+                    this.message = `Correcto, es ${this.pokemon.name}`
+                } else {
+                    this.message = `Oops, era ${this.pokemon.name}`
+                }
+            },
+            newGame(){
+                this.pokemonArr= [],
+                this.pokemon= null,
+                this.showPokemon= false,
+                this.showAnswer= false,
+                this.message= ''
+                this.mixPokemonArr()
             }
         },
         mounted(){
@@ -50,6 +71,16 @@
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+    
+    .btn-newgame{
+        padding-block: 1rem; 
+        padding-inline: 1.5rem; 
+        border: none;
+        background: purple;
+        border-radius: 5px;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
 </style>
