@@ -1,5 +1,4 @@
 
-import { shallowMount } from '@vue/test-utils'
 import getPokemonOptions, { getPokemons, getPokemonNames } from '@/helpers/getPokemonOptions'
 
 describe('get Pokemon Options helpers', ()=> {
