@@ -55,6 +55,7 @@
                 } else {
                     this.message = `Oops, era ${this.pokemon.name}`
                 }
+                console.log('Hola mundo', this.showPokemon)
             },
             newGame(){
                 this.pokemonArr= [],
