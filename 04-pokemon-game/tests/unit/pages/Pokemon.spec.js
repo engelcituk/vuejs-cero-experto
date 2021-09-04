@@ -1,6 +1,7 @@
 
 import { shallowMount, mount } from '@vue/test-utils'
 import PokemonPage from '@/pages/PokemonPage'
+import {pokemons} from './../mokcs/pokemons.mock'
 
 describe('Pokemon Page component', ()=> {
     let wrapper
@@ -18,6 +19,23 @@ describe('Pokemon Page component', ()=> {
     test('Debe de llamar a mixPokemonArr al montar',  () => {
         const mixPokemonArrSpy = jest.spyOn(PokemonPage.methods, 'mixPokemonArr')
         expect(mixPokemonArrSpy).toHaveBeenCalled() 
+
+    })
+
+    test('Debe de hacer match con el snapshot cuando cargan los pokemons',  () => {
+        const wrapper = mount( PokemonPage, {
+            data(){
+                return {
+                    pokemonArr: pokemons,
+                    pokemon: pokemons[0],
+                    showPokemon: false,
+                    showAnswer: false,
+                    message: ''
+                }
+            }
+        })
+
+        expect( wrapper.html() ).toMatchSnapshot()
 
     })
   
