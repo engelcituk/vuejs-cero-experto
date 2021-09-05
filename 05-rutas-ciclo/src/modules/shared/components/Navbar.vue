@@ -18,4 +18,9 @@
         margin: 0 10px;
         text-decoration: none;
     }
+
+    /* router-link-active */
+    div .router-link-exact-active{
+        color: #42b983;
+    }
 </style>
