@@ -8,11 +8,13 @@ export default {
         id:{
             type: Number,
             required: true
-        }
+        },
+        
     },
     created(){
-        const { id } = this.$route.params
+        // const { id } = this.$route.params
         // this.id = id
+        // console.log(this.$attrs)
     } ,
     data(){
         return {
