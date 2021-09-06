@@ -45,11 +45,13 @@ const routes = [
             { 
                 path: 'characters', 
                 name: 'dbz-characters',
+                // beforeEnter:[isAuthenticadedGuard],
                 component: () => import(/* webpackChunkName: "DBZCharactersPage" */ '@/modules/dbz/pages/Characters')  
             },
             { 
                 path: 'about', 
                 name: 'dbz-about',
+                // beforeEnter:[isAuthenticadedGuard],
                 component: () => import(/* webpackChunkName: "DBZAboutPage" */ '@/modules/dbz/pages/About') 
             },
             {
