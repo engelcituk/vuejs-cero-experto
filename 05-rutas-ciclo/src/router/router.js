@@ -31,13 +31,32 @@ const routes = [
             },
             {
                 path: '',
-                redirect: {
-                    name: 'pokemon-about'
-                }
+                redirect: { name: 'pokemon-about' }
             },
         ]
     },
-    
+    {
+        path:'/dbz',
+        name: 'dbz',
+        component: () => import(/* webpackChunkName: "DragonBallLayout" */ '@/modules/dbz/layouts/DragonBallLayout'),
+        children:[
+            { 
+                path: 'characters', 
+                name: 'dbz-characters',
+                component: () => import(/* webpackChunkName: "DBZCharactersPage" */ '@/modules/dbz/pages/Characters')  
+            },
+            { 
+                path: 'about', 
+                name: 'dbz-about',
+                component: () => import(/* webpackChunkName: "DBZAboutPage" */ '@/modules/dbz/pages/About') 
+            },
+            {
+                path: '',
+                redirect: { name: 'dbz-characters' }
+            },
+        ]
+
+    },
     { 
         path: '/:pathMatch(.*)*', 
         component: () => import(/* webpackChunkName: "NoPageFound" */ '@/modules/shared/pages/NoPageFound') 
