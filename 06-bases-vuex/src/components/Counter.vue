@@ -12,7 +12,7 @@
         <h2>count: {{count}}</h2>
         <h2>lastMutation: {{lastMutation}}</h2>
 
-        <h2>Direct Getter: {{$store.getters.squareCount}}</h2>
+        <h2>Direct Getter: {{$store.getters['counter/squareCount']}}</h2> 
     </div>
 </template>
 
