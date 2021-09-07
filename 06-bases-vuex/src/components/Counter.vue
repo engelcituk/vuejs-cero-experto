@@ -6,7 +6,7 @@
 
         <button @click="increment">+1</button>
         <button @click="incrementBy">+5</button>
-        <button>Random </button>
+        <button @click="incrementRandomInt">Random </button>
 
         <h1>mapState</h1>
         <h2>count: {{count}}</h2>
@@ -37,6 +37,9 @@
             incrementBy(){
                 this.$store.commit('incrementBy', 5)
             },
+            incrementRandomInt(){
+                this.$store.dispatch('incrementRandomInt')
+            }
             
         }
     }
