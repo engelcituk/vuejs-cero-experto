@@ -12,12 +12,12 @@
         <h2>count: {{count}}</h2>
         <h2>lastMutation: {{lastMutation}}</h2>
 
-
+        <h2>Direct Getter: {{$store.getters.squareCount}}</h2>
     </div>
 </template>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+    import { mapState, mapActions, mapGetters } from 'vuex'
     export default {
         // computed: mapState(['count']), 
         computed:{
