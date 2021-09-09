@@ -1,4 +1,5 @@
 <template>
+    <div>
         <div class="entry-title d-flex justify-content-between p-2">
             <div>
                 <span class="text-success fs-3 fw-bold">08</span>
@@ -22,14 +23,14 @@
                 placeholder="¿Que sucedió hoy?"
             ></textarea>
         </div>
-        <Fab/>
+        <Fab :icon="'fa-save'"/>
         <img
             class="img-thumbnail"
             width="500"
             height="450"
             src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTXTItGe_WhSapgSydJU92LCgSWszJ4j_JkMuU5revTBQAGtF4KI4za1rR018f0s0mCfCUxGvWfaADHV8wyE_c" alt="entry pictture"
         >
-    
+    </div>
 </template>
 
 <script>

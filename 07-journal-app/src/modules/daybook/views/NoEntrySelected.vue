@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex justify-content-center">
         <h1 class="align-self-center">No hay nada seleccionado</h1>
-        <Fab/>
+        <Fab  :icon="'fa-plus'"/>
     </div>
 </template>
 
