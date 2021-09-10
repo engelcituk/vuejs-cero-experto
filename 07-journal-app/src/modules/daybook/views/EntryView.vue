@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <div class="entry-title d-flex justify-content-between p-2">
+    <template v-if="entry">
+        <div
+            class="entry-title d-flex justify-content-between p-2">
             <div>
                 <span class="text-success fs-3 fw-bold">{{day}}</span>
                 <span class="mx-1 fs-3">{{month}}</span>
@@ -24,14 +25,14 @@
                 placeholder="¿Que sucedió hoy?"
             ></textarea>
         </div>
-        <Fab :icon="'fa-save'"/>
         <img
             class="img-thumbnail"
             width="500"
             height="450"
             src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTXTItGe_WhSapgSydJU92LCgSWszJ4j_JkMuU5revTBQAGtF4KI4za1rR018f0s0mCfCUxGvWfaADHV8wyE_c" alt="entry pictture"
         >
-    </div>
+    </template>
+        <Fab :icon="'fa-save'"/>
 </template>
 
 <script>
@@ -75,9 +76,14 @@
         methods:{
             loadEntry(){
                 const entry = this.getEntryById(this.id)
-                if( !entry ) this.$router.push({name:'no-entry'})
+                if( !entry ) return this.$router.push({name:'no-entry'})
                 this.entry = entry
             }
+        },
+        watch:{
+            id(){
+                this.loadEntry()
+            }   
         }
     }
 </script>
