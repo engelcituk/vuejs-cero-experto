@@ -1,10 +1,8 @@
 
 <template>
-    <div>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary"  @click="$emit('save-entry')">
             <i :class="iconFab"></i>
         </button>
-    </div>
 </template>
 
 <script>
@@ -19,6 +17,11 @@
         computed:{
             iconFab(){
                 return `fa fa-2x ${this.icon}`
+            }
+        },
+        methods:{
+            saveEntry(){
+                console.log('save entry recibido')
             }
         }
     }

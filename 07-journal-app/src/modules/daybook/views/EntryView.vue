@@ -31,8 +31,11 @@
             height="450"
             src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTXTItGe_WhSapgSydJU92LCgSWszJ4j_JkMuU5revTBQAGtF4KI4za1rR018f0s0mCfCUxGvWfaADHV8wyE_c" alt="entry pictture"
         >
+        <Fab
+            :icon="'fa-save'"
+            @save-entry="saveEntry"
+        />
     </template>
-        <Fab :icon="'fa-save'"/>
 </template>
 
 <script>
@@ -78,6 +81,9 @@
                 const entry = this.getEntryById(this.id)
                 if( !entry ) return this.$router.push({name:'no-entry'})
                 this.entry = entry
+            },
+            saveEntry(){
+                console.log('evento recibido')
             }
         },
         watch:{
