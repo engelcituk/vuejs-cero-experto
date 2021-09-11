@@ -8,6 +8,7 @@
                 <span class="mx-2 fs-4 fw-light">{{yearDay}}</span>
             </div>
             <div>
+                <input type="file" @change="onSelectedImage">
                 <button class="btn btn-danger mx-2" @click="onDeleteEntry" v-if="entry.id">
                     Borrar
                     <i class="fa fa-trash-alt"></i>
@@ -26,11 +27,20 @@
             ></textarea>
         </div>
         
-        <img
+        <!-- <img
             class="img-thumbnail"
             width="500"
             height="450"
             src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTXTItGe_WhSapgSydJU92LCgSWszJ4j_JkMuU5revTBQAGtF4KI4za1rR018f0s0mCfCUxGvWfaADHV8wyE_c" alt="entry pictture"
+        > -->
+
+        <img
+            v-if="localImage"
+            :src="localImage"
+            class="img-thumbnail"
+            width="500"
+            height="450"
+            alt="entry pictture"
         >
         <Fab
             :icon="'fa-save'"
@@ -57,7 +67,9 @@
         },
         data(){
             return {
-                entry: null
+                entry: null,
+                localImage: null,
+                file: null,
             }
         },
         created(){
@@ -129,6 +141,21 @@
                     this.$router.push({name:'no-entry'})
                     Swal.fire('Borrado', '', 'success')
                 }
+            },
+            onSelectedImage(event){
+                const file = event.target.files[0]
+                if( !file ){
+                    this.localImage = null
+                    this.file = null
+                    return
+                }
+                this.file = file
+                const fr = new FileReader()
+                fr.onload = () => this.localImage = fr.result
+                fr.readAsDataURL( file )
+            },
+            onSelectImage(){
+
             }
         },
         watch:{
