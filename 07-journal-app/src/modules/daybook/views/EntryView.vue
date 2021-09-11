@@ -25,6 +25,7 @@
                 placeholder="¿Que sucedió hoy?"
             ></textarea>
         </div>
+        
         <img
             class="img-thumbnail"
             width="500"
@@ -40,7 +41,8 @@
 
 <script>
     import { defineAsyncComponent } from 'vue';
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+
     import getDayMonthYear from './../helpers/getDayMonthYear'
 
     export default {
@@ -77,13 +79,16 @@
             }
         },
         methods:{
+            ...mapActions('journal',['updateEntry']),
             loadEntry(){
                 const entry = this.getEntryById(this.id)
                 if( !entry ) return this.$router.push({name:'no-entry'})
                 this.entry = entry
             },
-            saveEntry(){
-                console.log('evento recibido')
+            async saveEntry(){
+                // console.log('evento recibido')
+                await this.updateEntry(this.entry)
+                // console.log(this.entry)
             }
         },
         watch:{
