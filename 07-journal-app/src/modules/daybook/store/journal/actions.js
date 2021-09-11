@@ -8,7 +8,11 @@ export const myAction = async ({commit}) => {
 
 export const loadEntries = async ({commit}) => {
    const { data } = await journalApi.get(`/entries.json`)
+   
    const entries = []
+   
+   if( !data ) commit('setEntries', entries)
+
    for(let id of Object.keys(data)){
        entries.push({
            id,
@@ -33,8 +37,14 @@ export const createEntry = async ({commit}, entry) => {
     commit('setLoading', true)
     const { data } = await journalApi.post(`/entries.json`, dataToSave)
     dataToSave.id = data.name
-    console.log(dataToSave)
     commit('addEntry', dataToSave)
     commit('setLoading', false)
     return data.name
+}
+
+export const deleteEntry = async ({commit}, id) => {
+    commit('setLoading', true)
+    await journalApi.delete(`/entries/${id}.json`)
+    commit('deleteEntry', id)
+    commit('setLoading', false)
 }

@@ -8,7 +8,7 @@
                 <span class="mx-2 fs-4 fw-light">{{yearDay}}</span>
             </div>
             <div>
-                <button class="btn btn-danger mx-2">
+                <button class="btn btn-danger mx-2" @click="onDeleteEntry" v-if="entry.id">
                     Borrar
                     <i class="fa fa-trash-alt"></i>
                 </button>
@@ -79,7 +79,7 @@
             }
         },
         methods:{
-            ...mapActions('journal',['createEntry', 'updateEntry']),
+            ...mapActions('journal',['createEntry', 'updateEntry','deleteEntry']),
             loadEntry(){
                 let entry
                 if( this.id === 'new' ){
@@ -103,6 +103,10 @@
                     const id = await this.createEntry(this.entry)
                     this.$router.push({name:'entry', params:{ id }})
                 }
+            },
+            async onDeleteEntry(){
+                await this.deleteEntry(this.entry.id)
+                this.$router.push({name:'no-entry'})
             }
         },
         watch:{

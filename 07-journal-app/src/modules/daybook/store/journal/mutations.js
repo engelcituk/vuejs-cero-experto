@@ -22,3 +22,9 @@ export const addEntry =  (state, entry) => {
     // state.entries = state.entries.unshift( entry )
     state.entries = [entry, ...state.entries] // coloca la nueva entrada al principio, mas lo que hay antes
 }
+
+
+export const deleteEntry =  (state, id) => {
+    // state.entries = state.entries.unshift( entry )
+    state.entries = state.entries.filter( entry => entry.id !== id )
+}
