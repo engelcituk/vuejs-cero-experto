@@ -8,12 +8,18 @@
                 <span class="mx-2 fs-4 fw-light">{{yearDay}}</span>
             </div>
             <div>
-                <input type="file" @change="onSelectedImage">
+                <input
+                    v-show="false"
+                    type="file"
+                    @change="onSelectedImage"
+                    ref="imageSelector"
+                    accept="image/png, image/jpeg"
+                >
                 <button class="btn btn-danger mx-2" @click="onDeleteEntry" v-if="entry.id">
                     Borrar
                     <i class="fa fa-trash-alt"></i>
                 </button>
-                <button class="btn btn-primary ">
+                <button class="btn btn-primary " @click="onSelectImage">
                     Subir foto 
                     <i class="fa fa-upload"></i>
                 </button>
@@ -155,7 +161,7 @@
                 fr.readAsDataURL( file )
             },
             onSelectImage(){
-
+                this.$refs.imageSelector.click()
             }
         },
         watch:{
