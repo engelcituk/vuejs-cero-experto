@@ -10,8 +10,11 @@ export const loadEntries = async ({commit}) => {
    const { data } = await journalApi.get(`/entries.json`)
    
    const entries = []
-   
-   if( !data ) commit('setEntries', entries)
+
+   if( !data ){
+       commit('setEntries', entries)
+       return
+    }
 
    for(let id of Object.keys(data)){
        entries.push({
