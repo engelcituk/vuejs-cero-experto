@@ -33,12 +33,14 @@
             ></textarea>
         </div>
         
-        <!-- <img
+        <img
+            v-if="entry.picture && !localImage "
+            :src="entry.picture"
             class="img-thumbnail"
             width="500"
             height="450"
-            src="http://t0.gstatic.com/licensed-image?q=tbn:ANd9GcTXTItGe_WhSapgSydJU92LCgSWszJ4j_JkMuU5revTBQAGtF4KI4za1rR018f0s0mCfCUxGvWfaADHV8wyE_c" alt="entry pictture"
-        > -->
+            alt="entry pictture"
+        >
 
         <img
             v-if="localImage"
@@ -60,6 +62,7 @@
     import { defineAsyncComponent } from 'vue';
     import { mapGetters, mapActions } from 'vuex'
     import getDayMonthYear from './../helpers/getDayMonthYear'
+    import uploadImage from './../helpers/uploadImage.js'
 
     export default {
         props:{
@@ -119,6 +122,11 @@
                 })
                 Swal.showLoading()
 
+                if( this.file ){
+                    const picture = await uploadImage(this.file)
+                    this.entry.picture = picture
+                }
+
                 if( this.entry.id ){
                     //actualizar
                     await this.updateEntry(this.entry)
@@ -126,6 +134,7 @@
                     const id = await this.createEntry(this.entry)
                     this.$router.push({name:'entry', params:{ id }})
                 }
+                this.file = null
                 Swal.fire('Guardado', 'Entrada registrada con éxito', 'success')
             },
             async onDeleteEntry(){
