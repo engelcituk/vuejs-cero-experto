@@ -79,7 +79,7 @@
             }
         },
         methods:{
-            ...mapActions('journal',['updateEntry']),
+            ...mapActions('journal',['createEntry', 'updateEntry']),
             loadEntry(){
                 let entry
                 if( this.id === 'new' ){
@@ -100,10 +100,9 @@
                     //actualizar
                     await this.updateEntry(this.entry)
                 } else {
-                    // crear una nueva entrada
-                    console.log('nueva entrada')
+                    const id = await this.createEntry(this.entry)
+                    this.$router.push({name:'entry', params:{ id }})
                 }
-                // console.log(this.entry)
             }
         },
         watch:{

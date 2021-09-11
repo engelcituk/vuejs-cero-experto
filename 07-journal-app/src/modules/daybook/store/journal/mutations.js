@@ -18,6 +18,7 @@ export const updateEntry =  (state, entry) => {
     state.entries[idx] = entry
 }
 
-export const addEntry =  (/*state*/) => {
-    // return state.something
+export const addEntry =  (state, entry) => {
+    // state.entries = state.entries.unshift( entry )
+    state.entries = [entry, ...state.entries] // coloca la nueva entrada al principio, mas lo que hay antes
 }
