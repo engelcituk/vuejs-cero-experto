@@ -81,13 +81,28 @@
         methods:{
             ...mapActions('journal',['updateEntry']),
             loadEntry(){
-                const entry = this.getEntryById(this.id)
-                if( !entry ) return this.$router.push({name:'no-entry'})
+                let entry
+                if( this.id === 'new' ){
+                    entry = {
+                        text: '',
+                        date: new Date().getTime()
+                    }
+
+                } else {
+                     entry = this.getEntryById(this.id)
+                    if( !entry ) return this.$router.push({name:'no-entry'})
+                }
                 this.entry = entry
             },
             async saveEntry(){
                 // console.log('evento recibido')
-                await this.updateEntry(this.entry)
+                if( this.entry.id ){
+                    //actualizar
+                    await this.updateEntry(this.entry)
+                } else {
+                    // crear una nueva entrada
+                    console.log('nueva entrada')
+                }
                 // console.log(this.entry)
             }
         },
