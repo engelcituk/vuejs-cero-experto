@@ -27,8 +27,6 @@ describe('Pruebas en el UploadImage', ()=> {
         cloudinary.v2.api.delete_resources(imageId, {},()=>{
             done()
         })
-        console.log(imageId)
-        
     })  
   
 })
