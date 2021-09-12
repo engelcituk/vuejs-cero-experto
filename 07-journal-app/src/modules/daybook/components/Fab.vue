@@ -11,7 +11,7 @@
             icon:{
                 type: String,
                 default: 'fa-plus',
-                required: true
+                // required: true
             }
         },
         computed:{
