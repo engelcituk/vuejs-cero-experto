@@ -65,6 +65,7 @@
     import uploadImage from './../helpers/uploadImage.js'
 
     export default {
+        name:'EntryView',
         props:{
             id:{
                 type: String,
