@@ -27,6 +27,7 @@ const createVuexStore = (initialState) =>
 describe('Pruebas en el EntryView', () => {
 
     const store = createVuexStore(journalState)
+    store.dispatch = jest.fn()
     const mockRouter = {
         push: jest.fn()
     }
@@ -89,6 +90,8 @@ describe('Pruebas en el EntryView', () => {
         //     expect( mockRouter.push  ).toHaveBeenCalled()
         //     done()
         // }, 1)
+
+        // expect( store.dispatch ).toHaveBeenCalledWith({'journal/deleteEntry', '-MjIFKf-5JWdJFgyqNXA'})
 
     })
 })

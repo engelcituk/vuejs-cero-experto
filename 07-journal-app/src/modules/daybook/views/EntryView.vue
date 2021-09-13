@@ -139,7 +139,6 @@
                 Swal.fire('Guardado', 'Entrada registrada con éxito', 'success')
             },
             async onDeleteEntry(){
-                console.log('Se llamó aquí')
 
                 const { isConfirmed } = await Swal.fire({
                     title: '¿Está seguro?',
@@ -149,7 +148,6 @@
                     denyButtonText: 'Cancelar',
                 })
 
-                console.log({isConfirmed})
 
                 if( isConfirmed ){
                     Swal.fire({
@@ -158,7 +156,6 @@
                     })
                     Swal.showLoading()
                     
-                    console.log('A punto de eliminar')
 
                     // await this.deleteEntry(this.entry.id)
                     // this.$router.push({name:'no-entry'})
