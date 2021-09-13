@@ -117,7 +117,7 @@
                 this.entry = entry
             },
             async saveEntry(){
-                new Swal({
+                Swal.fire({
                     title: 'Espere por favor',
                     allowOutsideClick: false,
                 })
@@ -139,6 +139,8 @@
                 Swal.fire('Guardado', 'Entrada registrada con éxito', 'success')
             },
             async onDeleteEntry(){
+                console.log('Se llamó aquí')
+
                 const { isConfirmed } = await Swal.fire({
                     title: '¿Está seguro?',
                     text:'Una vez borrado no podrá recuperarlo',
@@ -146,15 +148,21 @@
                     confirmButtonText: 'Sí borrar',
                     denyButtonText: 'Cancelar',
                 })
+
+                console.log({isConfirmed})
+
                 if( isConfirmed ){
-                    new Swal({
+                    Swal.fire({
                         title: 'Espere por favor',
                         allowOutsideClick: false,
                     })
                     Swal.showLoading()
+                    
+                    console.log('A punto de eliminar')
 
-                    await this.deleteEntry(this.entry.id)
-                    this.$router.push({name:'no-entry'})
+                    // await this.deleteEntry(this.entry.id)
+                    // this.$router.push({name:'no-entry'})
+
                     Swal.fire('Borrado', '', 'success')
                 }
             },

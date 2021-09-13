@@ -2,6 +2,8 @@
 import { shallowMount } from '@vue/test-utils'
 import { createStore } from 'vuex'
 
+import Swal from 'sweetalert2'
+
 import journal from '@/modules/daybook/store/journal'
 import EntryView from '@/modules/daybook/views/EntryView'
 import { journalState } from './../../../mock-data/test-journal-state'
@@ -15,7 +17,13 @@ const createVuexStore = (initialState) =>
             }
         }
     })
-    
+
+    jest.mock('sweetalert2', ()=> ({
+        fire: jest.fn(),
+        showLoading: jest.fn(),
+        close: jest.fn()
+    }))
+
 describe('Pruebas en el EntryView', () => {
 
     const store = createVuexStore(journalState)
@@ -63,4 +71,24 @@ describe('Pruebas en el EntryView', () => {
         expect( mockRouter.push ).not.toHaveBeenCalled()
     })
       
+    test('Debe de borrar la entrada y salir', () => {
+
+        Swal.fire.mockReturnValueOnce(  Promise.resolve({ isConfirmed: true }) )
+
+        wrapper.find('.btn-danger').trigger('click')
+
+        expect( Swal.fire ).toHaveBeenCalledWith({
+            title: '¿Está seguro?',
+            text:'Una vez borrado no podrá recuperarlo',
+            showDenyButton: true,
+            confirmButtonText: 'Sí borrar',
+            denyButtonText: 'Cancelar',
+        })
+
+        // setTimeout(() => {
+        //     expect( mockRouter.push  ).toHaveBeenCalled()
+        //     done()
+        // }, 1)
+
+    })
 })
