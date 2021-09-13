@@ -117,8 +117,26 @@ describe('Vuex - Pruebas en el Journal module', ()=> {
             picture: "https://res.cloudinary.com/di3qzyeke/image/upload/v1631340820/vogb63ty1whgzvnt8yrd.png",
             text: "Texto de prueba editado desde testing",
         })
+    }) 
 
+    test('Actions: createEntry y deleteEntry', async () => { 
 
+        const store = createVuexStore(journalState)
+
+        const newEntry = { date: 1631336784314, text: 'Nueva entrada desde las pruebas' }
+        //dispatch de la acción createEntry
+        const id = await store.dispatch('journal/createEntry', newEntry )
+        
+        expect( typeof id).toBe('string')
+        expect(
+            store.state.journal.entries.find( e => e.id === id ) 
+        ).toBeTruthy()
+
+        //dispatch de la acción deleteEntry
+        await store.dispatch('journal/deleteEntry', id )
+        expect(
+            store.state.journal.entries.find( e => e.id === id ) 
+        ).toBeFalsy()
     }) 
 
 
