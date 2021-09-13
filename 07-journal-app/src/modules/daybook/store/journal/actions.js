@@ -22,6 +22,7 @@ export const loadEntries = async ({commit}) => {
            ...data[id]
        })
    }
+//    console.log(entries)
    commit('setEntries', entries)
 }
 
