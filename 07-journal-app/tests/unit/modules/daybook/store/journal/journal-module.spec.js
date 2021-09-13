@@ -66,7 +66,23 @@ describe('Vuex - Pruebas en el Journal module', ()=> {
         store.commit('journal/deleteEntry', 'ABC-123')
         expect( store.state.journal.entries.length ).toBe(2)
         expect( store.state.journal.entries.find( e => e.id === 'ABC-123') ).toBeFalsy()
-
-
     }) 
+
+    //Getters
+    test('getters: getEntriesByTerm y getEntryById', () => { 
+
+        const store = createVuexStore(journalState)      
+        
+        const [ entry1, entry2 ] = journalState.entries
+        //getEntriesByTerm
+        expect(store.getters['journal/getEntriesByTerm']('').length).toBe(2)
+        expect(store.getters['journal/getEntriesByTerm']('Hola mundo').length).toBe(1)
+        
+        expect(store.getters['journal/getEntriesByTerm']('Hola mundo')).toEqual([entry2])
+        //getEntryById
+        expect(store.getters['journal/getEntryById']('MjIEzEYIcVWFJM4sFDA')).toEqual(entry1)
+    }) 
+
+    // actions
+
 })
