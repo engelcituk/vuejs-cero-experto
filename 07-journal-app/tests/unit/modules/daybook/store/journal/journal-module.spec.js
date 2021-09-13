@@ -80,17 +80,44 @@ describe('Vuex - Pruebas en el Journal module', ()=> {
         
         expect(store.getters['journal/getEntriesByTerm']('Hola mundo')).toEqual([entry2])
         //getEntryById
-        expect(store.getters['journal/getEntryById']('MjIEzEYIcVWFJM4sFDA')).toEqual(entry1)
+        expect(store.getters['journal/getEntryById']('-MjIEzEYIcVWFJM4sFDA')).toEqual(entry1)
     }) 
 
     // Actions
-    test('getters: loadEntries', async () => { 
+    test('Actions: loadEntries', async () => { 
 
         const store = createVuexStore({isLoading: true, entries:[]})
 
         await store.dispatch('journal/loadEntries')
 
         expect( store.state.journal.entries.length ).toBe(2)
+
+    }) 
+
+    test('Actions: updateEntry', async () => { 
+
+        const store = createVuexStore(journalState)
+
+        const updateEntry = {
+            id: "-MjIEzEYIcVWFJM4sFDA",
+            date: 1631336784314,
+            picture: "https://res.cloudinary.com/di3qzyeke/image/upload/v1631340820/vogb63ty1whgzvnt8yrd.png",
+            text: "Texto de prueba editado desde testing",
+            otroCampo: true
+        }
+
+        await store.dispatch('journal/updateEntry', updateEntry)
+
+        expect( store.state.journal.entries.length ).toBe(2)
+        expect(
+            store.state.journal.entries.find( e => e.id === updateEntry.id )
+        ).toEqual({
+            id: "-MjIEzEYIcVWFJM4sFDA",
+            date: 1631336784314,
+            picture: "https://res.cloudinary.com/di3qzyeke/image/upload/v1631340820/vogb63ty1whgzvnt8yrd.png",
+            text: "Texto de prueba editado desde testing",
+        })
+
 
     }) 
 
