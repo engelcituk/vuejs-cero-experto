@@ -1,10 +1,16 @@
 <template>
+<div>
   <div id="nav">
-    <router-link :to="{name: 'Home'}">Home</router-link> |
-    <router-link :to="{name:'About'}">About</router-link> |
-    <router-link :to="{name:'Counter'}">Counter</router-link>
+    <router-link :to="{name: 'home'}">Home</router-link> |
+    <router-link :to="{name:'about'}">About</router-link> |
+    <router-link :to="{name:'counter'}">Counter</router-link>
   </div>
-  <router-view/>
+  <router-view v-slot="{ Component, route}">
+    <keep-alive>
+      <component :is="Component" :key="route.name"/>
+    </keep-alive>
+  </router-view>
+</div>
 </template>
 
 <style>
