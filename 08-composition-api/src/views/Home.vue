@@ -20,7 +20,7 @@ import { reactive, ref } from 'vue'
 export default {
 name: 'Home',
   setup () {
-    const iroman = ref({name:'tony', age: 50}) //este si admite cambios para primitivos, como String, Boolean y requiere ponerle value al cambiar
+    const iroman = ref({name:'tony', age: 50}) //este si admite cambios para primitivos, como String, Boolean,  y requiere ponerle value al cambiar
     const hulk = reactive({name:'Bruce', age: 50}) //reactive solo funciona con objetos, se cambia directo como ub objeto normal
 
     const iromanIsAlive = reactive(false) // no se puede cambiar porque es una constante reactiva
