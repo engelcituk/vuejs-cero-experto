@@ -19,46 +19,14 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import axios from 'axios'
+
+import useUsers from '@/composables/useUsers'
+
     export default {
+        name: 'Users',
         setup(){
-            const users       = ref([])
-            const isLoading   = ref(true)
-            const currentPage = ref(1)
-            const errorMsg    = ref('')
-
-            const getUsers = async (page = 1 ) => {
-
-                if( page <= 0) page = 1
-
-                isLoading.value = true
-
-                const { data } = await axios.get(`https://reqres.in/api/users?page=${page}`)
-                
-                if( data.data.length > 0 ){
-                    users.value = data.data
-                    currentPage.value = page
-                    errorMsg.value = ''
-                } else if( currentPage.value > 0 ) {
-                    errorMsg.value = 'No hay más usuarios'
-                }
-                
-                isLoading.value = false
-            }
-
-            
-            getUsers() // como no es necesario usar el created de las options api, simplemente se llama la funcion que hace la petición
-
-            return {
-                currentPage,
-                errorMsg,
-                isLoading,
-                users,
-                nextPage: ()=> getUsers( currentPage.value + 1),
-                prevPage: ()=> getUsers( currentPage.value - 1),
-            }
-
+            const { currentPage, errorMsg, isLoading, users, nextPage, prevPage } = useUsers()
+            return { currentPage, errorMsg, isLoading, users, nextPage, prevPage } 
         }
     }
 </script>
