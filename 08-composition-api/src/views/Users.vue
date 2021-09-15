@@ -1,19 +1,20 @@
 <template>
     <div>
-        <h2>Espere por favor</h2>
-        <h2>Usuarios</h2>
-        <h5>Error en la carga</h5>
-        <div class="list">
+        <h2 v-if="isLoading">Espere por favor</h2>
+        <h2 v-else>Usuarios</h2>
+        <h5 v-if="errorMsg">{{errorMsg}}</h5>
+        
+        <div class="list" v-if="users.length">
             <ul>
-                <li>
-                    <h4>Nombre de la persona</h4>
-                    <h6>granmail@mail.com</h6>
+                <li v-for="(user, index) in users" :key="index">
+                    <h4>{{user.first_name}} {{user.last_name}}</h4>
+                    <h6>{{user.email}}</h6>
                 </li>
             </ul>
         </div>
-        <button>Atrás</button>
-        <button>Adelante</button>
-        <span>Página: 2</span>
+        <button @click="prevPage">Atrás</button>
+        <button @click="nextPage">Adelante</button>
+        <span>Página: {{currentPage}}</span>
     </div>
 </template>
 
@@ -38,13 +39,25 @@ import axios from 'axios'
                 if( data.data.length > 0 ){
                     users.value = data.data
                     currentPage.value = page
+                    errorMsg.value = ''
                 } else if( currentPage.value > 0 ) {
                     errorMsg.value = 'No hay más usuarios'
                 }
+                
+                isLoading.value = false
             }
 
             
             getUsers() // como no es necesario usar el created de las options api, simplemente se llama la funcion que hace la petición
+
+            return {
+                currentPage,
+                errorMsg,
+                isLoading,
+                users,
+                nextPage: ()=> getUsers( currentPage.value + 1),
+                prevPage: ()=> getUsers( currentPage.value - 1),
+            }
 
         }
     }
