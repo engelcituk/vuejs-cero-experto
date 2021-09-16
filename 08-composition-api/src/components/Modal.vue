@@ -1,7 +1,18 @@
 <template>
     <div class="modal-background fade-in">
         <div class="modal-container">
-            <h1>Hola mundo</h1>
+            
+            <slot name="header"/>
+            <hr>
+            <slot name="body"/>
+            <hr>    
+            <slot name="footer"/>
+            <!-- <slot/> -->
+            <!-- <slot>
+                <div class="center">
+                    Esto aparecerá sino tenemos contenido
+                </div>
+            </slot> -->
         </div>
     </div>
 </template>
