@@ -85,9 +85,7 @@
                //useModal
                isOpen,
                openModal,
-               closeModal,
-
-                  
+               closeModal,      
            }
         }
     }
