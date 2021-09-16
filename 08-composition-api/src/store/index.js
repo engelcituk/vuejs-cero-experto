@@ -14,6 +14,11 @@ export default createStore({
   },
   actions: {
   },
+  getters:{
+    penddingTodos( state, getters, rootSate) {
+      return state.todos.filter ( todo => !todo.completed )
+    }
+  },
   modules: {
   }
 })
