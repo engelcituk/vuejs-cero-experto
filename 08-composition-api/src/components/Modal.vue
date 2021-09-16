@@ -8,6 +8,8 @@
             <slot name="body"/>
             <hr>    
             <slot name="footer"/>
+
+            <slot name="exposed" :newTitle="newTitle"></slot>
             <!-- <slot/> -->
             <!-- <slot>
                 <div class="center">
@@ -21,14 +23,12 @@
 <script>
     export default {
         emits:['on-close'],
-        props:{
-            title:{
-                type: String,
-                required: true
-            }
-        },
+        props:['title'],
         setup(props, context){
-            console.log({props, context})
+            // console.log({props, context})
+            return {
+                newTitle: props.title?.toUpperCase()
+            }
         }
     }
 </script>
@@ -48,8 +48,8 @@
 }
 
 .modal-container {
-    width: 250px;
-    height: 250px;
+    width: 500px;
+    height: 500px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);

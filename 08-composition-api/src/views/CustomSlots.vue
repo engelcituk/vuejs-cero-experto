@@ -3,7 +3,11 @@
         <h1>Custom slots</h1>
         <button @click="openModal">Abrir Modal</button>
 
-        <modal title="Hola mundo" otherTitle="Hola mundo" v-if="isOpen" @on-close="closeModal">
+        <modal
+            v-if="isOpen"
+            title="Hola mundo"
+            @on-close="closeModal"
+        >
             <!-- <h2>titulo del modal</h2>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor eaque mollitia ipsum perferendis optio at hic deserunt nobis eius laborum distinctio amet, placeat doloremque, animi ullam vitae praesentium eos dicta.</p>
             <button>salir</button> -->
@@ -15,6 +19,14 @@
             </template>
             <template v-slot:footer>
                 <button @click="closeModal">salir</button>
+            </template>
+            <!-- directo -->
+            <!-- <template v-slot:exposed="slotProps">
+                <h1>{{slotProps.newTitle}}</h1>
+            </template> -->
+            <!-- con desestrucrturación -->
+            <template v-slot:exposed="{newTitle}">
+                <h1>{{newTitle}}</h1>
             </template>
         </modal>
 
