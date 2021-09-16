@@ -54,6 +54,14 @@ const routes = [
     // this generates a separate chunk (users.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "todo" */ '../views/TodoVuex.vue')
+  },
+  {
+    path: '/custom-slots',
+    name: 'custom-slots',
+    // route level code-splitting
+    // this generates a separate chunk (users.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "Slots" */ '../views/CustomSlots.vue')
   }
 ]
 
