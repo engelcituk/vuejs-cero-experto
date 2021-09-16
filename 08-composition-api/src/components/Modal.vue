@@ -1,5 +1,6 @@
 <template>
-    <div class="modal-background fade-in">
+        <!--  @click.self="$emit('on-close')" El .selt es un modificadoer de evento que al hacer el click este solo aplique a este div o root element-->
+    <div class="modal-background fade-in" @click.self="$emit('on-close')">
         <div class="modal-container">
             
             <slot name="header"/>
@@ -19,7 +20,16 @@
 
 <script>
     export default {
-        
+        emits:['on-close'],
+        props:{
+            title:{
+                type: String,
+                required: true
+            }
+        },
+        setup(props, context){
+            console.log({props, context})
+        }
     }
 </script>
 
