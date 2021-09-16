@@ -15,15 +15,23 @@ export default createStore({
   actions: {
   },
   getters:{
-    penddingTodos( state, getters, rootSate) {
+    penddingTodos: ( state, getters, rootSate ) => {
       return state.todos.filter ( todo => !todo.completed )
     },
-    allTodos( state, getters, rootSate) {
+    allTodos: ( state, getters, rootSate ) => {
       return state.todos
     },
-    completedTodos( state, getters, rootSate) {
+    completedTodos: ( state, getters, rootSate ) => {
       return state.todos.filter ( todo => todo.completed )
     },
+    getTodosByTab: (_, getters, rootSate ) => ( tab ) =>  {
+      switch (tab) {
+        case 'allTodos': return getters.allTodos
+        case 'completed': return getters.completedTodos
+        case 'pendings': return getters.penddingTodos
+        default: return getters.allTodos
+      }
+    }
   },
   modules: {
   }

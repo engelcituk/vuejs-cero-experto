@@ -2,17 +2,26 @@
 <template>
     <div>
         <h1>Thanos todo List</h1>
-        <h4>Tareas: {{pendings.length}}</h4>
+        <h4>Tareas pendientes: {{pendings.length}}</h4>
         <hr>
         <!-- <h4>Todas las tareas: {{allTodos.length}}</h4>
         <h4>Completados: {{completed.length}}</h4> -->
-        <button class="active">Todos</button>
-        <button>Pendientes</button>
-        <button>Completados</button>
+        <button
+            :class="{'active': currentTab === 'allTodos'}"
+            @click="currentTab = 'allTodos'"
+        >Todos</button>
+        <button
+            :class="{'active': currentTab === 'completed'}"
+            @click="currentTab = 'completed'"
+        >Pendientes</button>
+        <button
+            :class="{'active': currentTab === 'pendings'}"
+            @click="currentTab='pendings'"
+        >Completados</button>
 
         <div class="list-todo">
             <ul>
-                <li :class="{'completed': todo.completed }" v-for="todo in allTodos" :key="todo.id">
+                <li :class="{'completed': todo.completed }" v-for="todo in getTodosByTab" :key="todo.id">
                     {{todo.text}}
                 </li>
             </ul>
@@ -22,17 +31,21 @@
 </template>
 
 <script>
-    import { computed } from 'vue'
+    import { computed, ref } from 'vue'
     import { useStore } from 'vuex'
 
     export default {
         setup(){
             const store = useStore()
-            
+            const currentTab = ref('allTodos')
+
             return {
-                pendings: computed( () => store.getters['penddingTodos']),
+                currentTab,
+
                 allTodos: computed( () => store.getters['allTodos']),
                 completed: computed( () => store.getters['completedTodos']),
+                pendings: computed( () => store.getters['penddingTodos']),
+                getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value)),    
             }
         }
     }
