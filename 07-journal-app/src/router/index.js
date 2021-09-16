@@ -1,6 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import daybookRouter from '@/modules/daybook/router'
+import authRouter from '@/modules/auth/router'
+
 const routes = [
   {
     path: '/',
@@ -18,6 +20,10 @@ const routes = [
   {
     path:'/daybook',
     ...daybookRouter //lo esparso con el spread, ossea tomo su valor
+  },
+  {
+    path:'/auth',
+    ...authRouter //lo esparso con el spread, ossea tomo su contenido
   }
 ]
 
