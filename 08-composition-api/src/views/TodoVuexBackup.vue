@@ -37,18 +37,25 @@
 <script>
     import { computed, ref } from 'vue'
     import { useStore } from 'vuex'
-    import useTodos from '@/composables/useTodos'
+
     export default {
         setup(){
-            
-           const { getTodosByTab, currentTab, pendings, toggleTodo } = useTodos('allTodos')
+            const store = useStore()
+            const currentTab = ref('allTodos')
 
-           return {
-               currentTab,
-               getTodosByTab,
-               pendings,
-               toggleTodo,
-           }
+            
+
+            return {
+                //propiedades reactivas
+                currentTab,
+                //Getters
+                allTodos: computed( () => store.getters['allTodos']),
+                completed: computed( () => store.getters['completedTodos']),
+                getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value)),//se requiere indicar el value en nuestro script, pero en el template no es necesario
+                pendings: computed( () => store.getters['penddingTodos']),
+                //Methods
+                toggleTodo: ( id ) => store.commit('toggleTodo', id)
+            }
         }
     }
 </script>
