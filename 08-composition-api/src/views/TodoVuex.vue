@@ -11,17 +11,21 @@
             @click="currentTab = 'allTodos'"
         >Todos</button>
         <button
-            :class="{'active': currentTab === 'completed'}"
-            @click="currentTab = 'completed'"
-        >Pendientes</button>
-        <button
             :class="{'active': currentTab === 'pendings'}"
             @click="currentTab='pendings'"
         >Completados</button>
+        <button
+            :class="{'active': currentTab === 'completed'}"
+            @click="currentTab = 'completed'"
+        >Pendientes</button>
 
         <div class="list-todo">
             <ul>
-                <li :class="{'completed': todo.completed }" v-for="todo in getTodosByTab" :key="todo.id">
+                <li
+                    :class="{'completed': todo.completed }"
+                    v-for="todo in getTodosByTab" :key="todo.id"
+                    @dblclick="toggleTodo(todo.id)"
+                >
                     {{todo.text}}
                 </li>
             </ul>
@@ -39,13 +43,18 @@
             const store = useStore()
             const currentTab = ref('allTodos')
 
-            return {
-                currentTab,
+            
 
+            return {
+                //propiedades reactivas
+                currentTab,
+                //Getters
                 allTodos: computed( () => store.getters['allTodos']),
                 completed: computed( () => store.getters['completedTodos']),
+                getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value)),//se requiere indicar el value en nuestro script, pero en el template no es necesario
                 pendings: computed( () => store.getters['penddingTodos']),
-                getTodosByTab: computed( () => store.getters['getTodosByTab'](currentTab.value)),    
+                //Methods
+                toggleTodo: ( id ) => store.commit('toggleTodo', id)
             }
         }
     }
