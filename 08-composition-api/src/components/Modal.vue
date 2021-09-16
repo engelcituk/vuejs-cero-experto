@@ -3,11 +3,14 @@
     <div class="modal-background fade-in" @click.self="$emit('on-close')">
         <div class="modal-container">
             
-            <slot name="header"/>
+            <!-- <slot name="header"/>
             <hr>
             <slot name="body"/>
-            <hr>    
-            <slot name="footer"/>
+            <hr>    -->
+
+            <slot name="task-form"/>
+            <br>  
+            <slot name="footer"/> 
 
             <slot name="exposed" :newTitle="newTitle"></slot>
             <!-- <slot/> -->
@@ -48,8 +51,8 @@
 }
 
 .modal-container {
-    width: 500px;
-    height: 500px;
+    width: 250px;
+    height: 250px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);

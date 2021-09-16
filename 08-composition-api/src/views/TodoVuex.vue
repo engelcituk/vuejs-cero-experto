@@ -30,7 +30,31 @@
                 </li>
             </ul>
         </div>
+        
+        <button @click="openModal">Crear Tarea</button>
 
+        <modal
+            v-if="isOpen"
+            @on-close="closeModal"
+        >
+            <template v-slot:task-form>
+                <p>Agregar tarea: {{task}}</p>
+                <form @submit.prevent="addTask">
+                    <input 
+                        type="text"
+                        placeholder="Ingrese tarea"
+                        v-model="task"
+                    >
+                </form>
+                <br>
+                <span>Presione enter para buscar</span>
+            </template>
+            
+            <template v-slot:footer>
+                <button @click="closeModal">salir</button>
+            </template>
+            
+        </modal>
     </div>
 </template>
 
@@ -38,16 +62,32 @@
     import { computed, ref } from 'vue'
     import { useStore } from 'vuex'
     import useTodos from '@/composables/useTodos'
-    export default {
-        setup(){
-            
-           const { getTodosByTab, currentTab, pendings, toggleTodo } = useTodos('allTodos')
+    import useModal from '@/composables/useModal'
 
+    import Modal from './../components/Modal'
+
+    export default {
+        components:{
+            Modal
+        },
+        setup(){
+           const { addTask, getTodosByTab, currentTab, pendings, task, toggleTodo} = useTodos('allTodos')
+           const { isOpen, openModal, closeModal } = useModal()
+           
            return {
+               //useTodos
                currentTab,
                getTodosByTab,
                pendings,
+               task,
                toggleTodo,
+               addTask,
+               //useModal
+               isOpen,
+               openModal,
+               closeModal,
+
+                  
            }
         }
     }
