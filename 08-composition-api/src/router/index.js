@@ -46,6 +46,14 @@ const routes = [
     // this generates a separate chunk (users.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "pokemon" */ '../views/Pokemon.vue')
+  },
+  {
+    path: '/todo',
+    name: 'todo',
+    // route level code-splitting
+    // this generates a separate chunk (users.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "todo" */ '../views/TodoVuex.vue')
   }
 ]
 
