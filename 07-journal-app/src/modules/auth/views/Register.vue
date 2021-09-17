@@ -49,7 +49,7 @@
 
              return {
                  userForm,
-                 onSubmit: async () => createUser(userForm)
+                 onSubmit: async () => createUser( userForm.value )
              }
         }
     }
