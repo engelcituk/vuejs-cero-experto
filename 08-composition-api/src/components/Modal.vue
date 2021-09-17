@@ -30,7 +30,9 @@
         setup(props, context){
             // console.log({props, context})
             return {
-                newTitle: props.title?.toUpperCase()
+                // newTitle: props.title?.toUpperCase(),
+                newTitle: props.title.toUpperCase()
+
             }
         }
     }
