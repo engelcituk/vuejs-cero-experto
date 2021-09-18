@@ -3,7 +3,7 @@ import journal from '@/modules/daybook/store/journal'
 import { journalState } from './../../../../mock-data/test-journal-state'
 import authApi from '@/api/authApi'
 
-
+// para correr la prueba: npm run test:unit journal-module
 const createVuexStore = (initialState) => 
     createStore({
         modules:{
