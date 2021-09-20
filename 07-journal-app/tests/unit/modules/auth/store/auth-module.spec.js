@@ -137,8 +137,31 @@ describe('Vuex - Pruebas en el Auth module', () => {
         expect(user).toMatchObject({ name: 'testuser', email: 'testuser2@mail.com'})
         expect( typeof token).toBe('string')
         expect( typeof refreshToken ).toBe('string')
+    })
 
+    test('Actions: checkAutentication - Positiva', async() => { 
 
+        const store = createVuexStore({
+            status: 'not-authenticated', // 'authenticated' , 'not-authenticated', 'authenticating'
+            user: null,
+            idToken: null,
+            refreshToken: null
+        })
+
+        //signIn
+        await store.dispatch('auth/signInUser', {name: 'test user', email: 'usertest@gmail.com', password: '123456'})
+        const { idToken } = store.state.auth 
+        store.commit('auth/logout')
+        
+        localStorage.setItem('idToken',idToken )
+
+        const checkResp = await store.dispatch('auth/checkAuthentication')
+        const { status, user, idToken:token, refreshToken } = store.state.auth
+
+        expect( checkResp ).toEqual({ ok: true, message: 'Verificación de autenticación válida' })
+        expect( status ).toBe('authenticated')
+        expect( user ).toMatchObject({ name: 'User Test', email: 'usertest@gmail.com'})
+        expect( typeof token).toBe('string')
     })
 
 })
