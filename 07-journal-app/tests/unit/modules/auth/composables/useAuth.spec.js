@@ -20,7 +20,16 @@ describe('Pruebas en el useAuth', () => {
         const respuesta = await createUser( newUser )
         expect( mockStore.dispatch ).toHaveBeenCalledWith("auth/createUser", {"email": "jonas@mail.com", "name": "Jonas"})
         expect( respuesta ).toEqual({ok: true})
-
     })  
+
+    test('createUser fallido porque el email ya existe', async () => { 
+        const { createUser } = useAuth()
+        const newUser = { name: 'Jonas', email:'jonas@mail.com' }
+        mockStore.dispatch.mockReturnValue({ ok: false, message: 'EMAIL_EXISTS' })
+
+        const respuesta = await createUser( newUser )
+        expect( mockStore.dispatch ).toHaveBeenCalledWith("auth/createUser", newUser)
+        expect( respuesta ).toEqual({ ok: false, message: 'EMAIL_EXISTS' })
+    }) 
    
 })
