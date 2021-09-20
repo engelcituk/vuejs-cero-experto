@@ -1,6 +1,13 @@
 import { shallowMount } from '@vue/test-utils'
 import Login from '@/modules/auth/views/Login'
 import createVuexStore from '../../../mock-data/mock-store'
+import Swal from 'sweetalert2'
+
+jest.mock('sweetalert2', () => ({
+    fire: jest.fn(),
+    showLoading: jest.fn(),
+    close: jest.fn()
+}))
 
 
 import {
@@ -30,6 +37,9 @@ describe('Pruebas en el View Login', () => {
         refreshToken: null
     })
 
+    store.dispatch = jest.fn()
+
+    beforeEach( () => jest.clearAllMocks() )
 
     test('Debe de mostar el view correctamente ', async () => { 
         const wrapper = shallowMount(Login, {
@@ -38,6 +48,22 @@ describe('Pruebas en el View Login', () => {
             }
         })
         expect( wrapper.html() ).toMatchSnapshot()
+    })
+
+    test('Credenciales incorrectas, dispara el error Sweetalert ', async () => { 
+
+        store.dispatch.mockReturnValueOnce( {ok: true, message: 'Error con las credenciales' } )
+
+        const wrapper = shallowMount(Login, {
+            global: {
+                plugins:[ store ]
+            }
+        })
+        await wrapper.find('form').trigger('submit')
+
+        expect( store.dispatch ).toHaveBeenCalledWith('auth/signInUser', { email: '', password: ''})
+        // expect( Swal.fire ).toHaveBeenCalledWith( "Error", "Error con las credenciales", "error" )
+
     })
    
 })
