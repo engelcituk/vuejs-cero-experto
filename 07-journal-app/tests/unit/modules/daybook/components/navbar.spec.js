@@ -3,6 +3,24 @@ import Navbar from '@/modules/daybook/components/Navbar'
 import createVuexStore from '../../../mock-data/mock-store'
 
 
+import {
+    VueRouterMock,
+    createRouterMock,
+    injectRouterMock,
+  } from 'vue-router-mock'
+
+  import { config } from '@vue/test-utils'
+  
+  // create one router per test file
+  const router = createRouterMock()
+  beforeEach(() => {
+    injectRouterMock(router)
+  })
+  
+  // Add properties to the wrapper
+  config.plugins.VueWrapper.install(VueRouterMock)
+  
+  
 // para correr la prueba: npm run test:unit navbar
 describe('Pruebas en el componente navBar', () => {
 
