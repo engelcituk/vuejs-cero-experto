@@ -5,7 +5,15 @@ const useUI = () => {
     const store = useStore()
     return {
         //sideMenuOptions
-        sideMenuOpen: computed( () => store.getters['ui/isSideMenuOpen'] ),
+        // sideMenuOpen: computed( () => store.getters['ui/isSideMenuOpen'] ),
+        sideMenuOpen: computed({
+          get(){
+            return store.getters['ui/isSideMenuOpen'] 
+          },
+          set(val){
+            store.commit('ui/toggleSideMenu')
+          }
+        }),
         toggleSideMenu(){
           store.commit('ui/toggleSideMenu')
         }
