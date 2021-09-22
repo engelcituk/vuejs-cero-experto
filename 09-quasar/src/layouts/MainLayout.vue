@@ -15,7 +15,7 @@
           Quasar App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
     </q-header>
 
@@ -32,7 +32,7 @@
         </q-item-label>
 
         <EssentialLink
-          v-for="link in essentialLinks"
+          v-for="link in linksList"
           :key="link.title"
           v-bind="link"
         />
@@ -48,27 +48,7 @@
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'las la-graduation-cap',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Typography',
-    caption: 'Tipos de letras',
-    icon: 'las la-spell-check',
-    link: 'typography'
-  },
-  {
-    title: 'Flex',
-    caption: 'Flex Box',
-    icon: 'lab la-css3-alt',
-    link: 'flex'
-  },
-  
-];
+import {linksList} from '../router/link-list'
 
 import { defineComponent, ref } from 'vue'
 
@@ -83,7 +63,7 @@ export default defineComponent({
     const leftDrawerOpen = ref(false)
 
     return {
-      essentialLinks: linksList,
+      linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
