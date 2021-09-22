@@ -35,15 +35,23 @@
       color="primary"
       label="Abrir menú lateral"
       class="q-mt-md"
+      @click="toggleSideMenu"
     />
 
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-
+import { defineComponent } from 'vue'
+import useUI from '../composables/useUI'
 export default defineComponent({
-  name: 'Typography'
+  name: 'Typography',
+  setup(){
+    const { sideMenuOpen, toggleSideMenu } = useUI()
+    return {
+      sideMenuOpen,
+      toggleSideMenu
+    }
+  }
 })
 </script>
