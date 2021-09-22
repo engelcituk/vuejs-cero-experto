@@ -31,6 +31,12 @@
     <span class="text-weight-bold">Et qui minim sit ad ut non eiusmod duis Lorem.</span>
     <span class="text-weight-bolder">Excepteur sint est culpa proident aliquip Lorem eiusmod dolore aliqua quis fugiat.</span>
 
+    <q-btn
+      color="primary"
+      label="Abrir menú lateral"
+      class="q-mt-md"
+    />
+
   </q-page>
 </template>
 

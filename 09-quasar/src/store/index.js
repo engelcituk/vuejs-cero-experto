@@ -2,6 +2,8 @@ import { store } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 
 // import example from './module-example'
+import ui from './ui'
+
 
 /*
  * If not building with SSR mode, you can
@@ -16,6 +18,7 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       // example
+      ui
     },
 
     // enable strict mode (adds overhead!)
