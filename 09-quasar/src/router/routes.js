@@ -2,9 +2,13 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/MainLayout'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: '', component: () => import('pages/Index') },
+      { path: 'typography', name:'typography', component: () => import('pages/Typography') },
+      { path: 'flex', name:'flex', component: () => import('pages/Flex') }
+
+
     ]
   },
 
