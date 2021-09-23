@@ -66,6 +66,7 @@
 
 <script>
 import { defineComponent, ref } from 'vue';
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'PageForm',
@@ -78,6 +79,8 @@ export default defineComponent({
       errorInConditions: false
     })
 
+    const $q = useQuasar()
+
     return {
       userForm,
       onSubmit(){
@@ -85,11 +88,15 @@ export default defineComponent({
         userForm.value.errorInConditions = false
 
         if( !userForm.value.conditions ) {
-          console.log('Debe de aceptar las condiciones')
+          $q.notify({
+            position: 'top',
+            message: 'Debe de aceptar las condiciones',
+            color: 'red',
+            icon:'las la-exclamation-circle'
+          })
           userForm.value.errorInConditions = true
           return
         }
-        console.log(userForm.value)
       },
       onReset(){
         userForm.value = {
