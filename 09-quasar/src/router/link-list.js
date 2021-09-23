@@ -17,5 +17,11 @@ export const linksList = [
       icon: 'lab la-css3-alt',
       link: 'flex'
     },
+    {
+      title: 'Dialog',
+      caption: 'Dialog ',
+      icon: 'las la-comment',
+      link: 'dialog'
+    },
     
   ];

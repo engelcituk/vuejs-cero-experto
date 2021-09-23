@@ -6,9 +6,8 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Index') },
       { path: 'typography', name:'typography', component: () => import('pages/Typography') },
-      { path: 'flex', name:'flex', component: () => import('pages/Flex') }
-
-
+      { path: 'flex', name:'flex', component: () => import('pages/Flex') },
+      { path: 'dialog', name:'dialog', component: () => import('pages/Dialog') },
     ]
   },
 
