@@ -35,6 +35,78 @@
       <div class="col-12 col-sm-6 col-md-4 bg-secondary"></div>
     </div>
 
+    <q-separator spaced/>
+
+    <div class="row q-mb-md">
+      <div class="square-box q-mx-md bg-primary">
+      </div>
+      <div class="square-box q-mx-md bg-secondary">
+      </div>
+      <div class="square-box q-mx-md bg-accent">
+      </div>
+    </div>
+
+
+    <div class="row q-mb-md  justify-between">
+      <div class="square-box q-mx-md bg-primary">
+      </div>
+      <div class="square-box q-mx-md bg-secondary">
+      </div>
+      <div class="square-box q-mx-md bg-accent">
+      </div>
+    </div>
+
+    <div class="row q-mb-md justify-end">
+      <div class="square-box q-mx-md bg-primary">
+      </div>
+      <div class="square-box q-mx-md bg-secondary">
+      </div>
+      <div class="square-box q-mx-md bg-accent">
+      </div>
+    </div>
+
+    <div class="row q-mb-md justify-around">
+      <div class="square-box q-mx-md bg-primary">
+      </div>
+      <div class="square-box q-mx-md bg-secondary">
+      </div>
+      <div class="square-box q-mx-md bg-accent">
+      </div>
+    </div>
+
+     <div class="column q-mb-md items-center bg-dark">
+      <div class="square-box q-mx-md bg-primary">
+      </div>
+      <div class="square-box q-mx-md bg-secondary">
+      </div>
+      <div class="square-box q-mx-md bg-accent">
+      </div>
+    </div>
+
+    <div class="column q-mb-md items-end bg-dark">
+      <div class="square-box q-mx-md bg-primary"></div>
+      <div class="square-box q-mx-md bg-secondary"></div>
+      <div class="square-box q-mx-md bg-accent"></div>
+    </div>
+
+    <div class="column custom-height q-mb-md items-center justify-center bg-dark">
+      <div class="square-box q-mx-md bg-primary"></div>
+      <div class="square-box q-mx-md bg-secondary"></div>
+      <div class="square-box q-mx-md bg-accent"></div>
+    </div>
+
+    <div class="column custom-height q-mb-md items-center justify-between bg-dark">
+      <div class="square-box q-mx-md bg-primary"></div>
+      <div class="square-box q-mx-md bg-secondary"></div>
+      <div class="square-box q-mx-md bg-accent"></div>
+    </div>
+
+    <div class="column custom-height q-mb-md items-center justify-between bg-dark">
+      <div class="square-box q-mx-md bg-primary"></div>
+      <div class="square-box q-mx-md bg-secondary self-end"></div>
+      <div class="square-box q-mx-md bg-accent"></div>
+    </div>
+
   </q-page>
 </template>
 
@@ -49,5 +121,12 @@ export default defineComponent({
 <style scoped>
 .col, .col-4, .col-6, .col-12{
   height: 50px;
+}
+.square-box {
+  height: 50px;
+  width: 50px;
+}
+.custom-height{
+  height: 300px;
 }
 </style>
