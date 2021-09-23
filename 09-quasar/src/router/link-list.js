@@ -13,15 +13,21 @@ export const linksList = [
     },
     {
       title: 'Flex',
-      caption: 'Flex Box',
+      caption: 'Trabajando con elementos flex-box',
       icon: 'lab la-css3-alt',
       link: 'flex'
     },
     {
       title: 'Dialog',
-      caption: 'Dialog ',
+      caption: 'Probando cuadros de dialogo',
       icon: 'las la-comment',
       link: 'dialog'
+    },
+    {
+      title: 'Forms',
+      caption: 'Formularios y campos ',
+      icon: 'lab la-wpforms',
+      link: 'forms'
     },
     
   ];
